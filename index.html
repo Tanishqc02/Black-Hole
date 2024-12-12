@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Hole Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00ffff;
+        }
+
+        .filter-section {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        select {
+            padding: 8px;
+            font-size: 16px;
+            background-color: #333;
+            color: white;
+            border: 1px solid #00ffff;
+            border-radius: 4px;
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .fact-card {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .fact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .fact-category {
+            color: #00ffff;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .fact-source {
+            color: #888;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Black Hole Facts</h1>
+        <div class="filter-section">
+            <select id="categoryFilter">
+                <option value="all">All Categories</option>
+                <option value="basic">Basic</option>
+                <option value="physics">Physics</option>
+                <option value="structure">Structure</option>
+                <option value="formation">Formation</option>
+                <option value="observation">Observation</option>
+            </select>
+        </div>
+        <div id="factsContainer" class="facts-grid"></div>
+    </div>
+
+    <script>
+        const blackHoleData = {
+            "blackHoleFacts": [
+                {
+                    "id": 1,
+                    "fact": "The point of no return around a black hole is called the event horizon",
+                    "category": "basic",
+                    "source": "astronomy"
+                },
+                {
+                    "id": 2,
+                    "fact": "Supermassive black holes can have masses millions or billions times that of our Sun",
+                    "category": "structure",
+                    "source": "astrophysics"
+                },
+                {
+                    "id": 3,
+                    "fact": "Time moves slower near a black hole due to extreme gravitational effects",
+                    "category": "physics",
+                    "source": "general relativity"
+                },
+                {
+                    "id": 4,
+                    "fact": "The first image of a black hole was captured in 2019 of M87*",
+                    "category": "observation",
+                    "source": "astronomy"
+                },
+                {
+                    "id": 5,
+                    "fact": "Black holes emit Hawking radiation, theoretically causing them to slowly evaporate",
+                    "category": "physics",
+                    "source": "quantum physics"
+                },
+                {
+                    "id": 6,
+                    "fact": "The singularity at a black hole's center has infinite density",
+                    "category": "structure",
+                    "source": "physics"
+                },
+                {
+                    "id": 7,
+                    "fact": "Not even light can escape once it passes a black hole's event horizon",
+                    "category": "basic",
+                    "source": "physics"
+                },
+                {
+                    "id": 8,
+                    "fact": "Black holes can form when massive stars collapse at the end of their lives",
+                    "category": "formation",
+                    "source": "stellar evolution"
+                },
+                {
+                    "id": 9,
+                    "fact": "The Milky Way has a supermassive black hole at its center named Sagittarius A*",
+                    "category": "observation",
+                    "source": "astronomy"
+                },
+                {
+                    "id": 10,
+                    "fact": "Binary black hole systems can create gravitational waves when they merge",
+                    "category": "physics",
+                    "source": "gravitational physics"
+                },
+                {
+                    "id": 11,
+                    "fact": "Intermediate-mass black holes range from 100 to 100,000 solar masses",
+                    "category": "structure",
+                    "source": "astrophysics"
+                },
+                {
+                    "id": 12,
+                    "fact": "Black holes can grow by absorbing matter and merging with other black holes",
+                    "category": "formation",
+                    "source": "astrophysics"
+                },
+                {
+                    "id": 13,
+                    "fact": "The area around a black hole where matter is accelerated is called the accretion disk",
+                    "category": "structure",
+                    "source": "astronomy"
+                },
+                {
+                    "id": 14,
+                    "fact": "Frame dragging occurs when a rotating black hole distorts spacetime",
+                    "category": "physics",
+                    "source": "general relativity"
+                },
+                {
+                    "id": 15,
+                    "fact": "Primordial black holes might have formed in the early universe",
+                    "category": "formation",
+                    "source": "cosmology"
+                },
+                {
+                    "id": 16,
+                    "fact": "Black holes can have electric charge and angular momentum",
+                    "category": "physics",
+                    "source": "astrophysics"
+                },
+                {
+                    "id": 17,
+                    "fact": "The smallest black holes are theoretical and called micro black holes",
+                    "category": "structure",
+                    "source": "quantum physics"
+                },
+                {
+                    "id": 18,
+                    "fact": "Spaghettification occurs when objects are stretched apart by a black hole's gravity",
+                    "category": "physics",
+                    "source": "astrophysics"
+                },
+                {
+                    "id": 19,
+                    "fact": "Some black holes shoot out powerful jets of particles and energy",
+                    "category": "structure",
+                    "source": "astronomy"
+                },
+                {
+                    "id": 20,
+                    "fact": "The no-hair theorem states black holes can be described by just mass, charge, and spin",
+                    "category": "physics",
+                    "source": "theoretical physics"
+                }
+            ]
+        };
+
+        function createFactCard(fact) {
+            const card = document.createElement('div');
+            card.className = 'fact-card';
+            card.innerHTML = `
+                <div class="fact-content">${fact.fact}</div>
+                <div class="fact-category">Category: ${fact.category}</div>
+                <div class="fact-source">Source: ${fact.source}</div>
+            `;
+            return card;
+        }
+
+        function displayFacts(category = 'all') {
+            const factsContainer = document.getElementById('factsContainer');
+            factsContainer.innerHTML = '';
+            
+            const filteredFacts = category === 'all' 
+                ? blackHoleData.blackHoleFacts 
+                : blackHoleData.blackHoleFacts.filter(fact => fact.category === category);
+
+            filteredFacts.forEach(fact => {
+                factsContainer.appendChild(createFactCard(fact));
+            });
+        }
+
+        document.getElementById('categoryFilter').addEventListener('change', (e) => {
+            displayFacts(e.target.value);
+        });
+
+        // Initial display
+        displayFacts();
+    </script>
+</body>
+</html>
